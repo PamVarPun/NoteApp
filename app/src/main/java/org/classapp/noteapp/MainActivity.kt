@@ -98,6 +98,7 @@ class MainActivity : AppCompatActivity(), NotesAdapter.NotesClickListener, Popup
 
             override fun onQueryTextSubmit(p0: String?): Boolean {
                 return  false
+                /*ที่ return เป็น false เพราะเราต้องการใช้ function filter ตอนที่กำหนดแล้ว*/
             }
         })
 

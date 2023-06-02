@@ -13,7 +13,8 @@ import org.classapp.noteapp.R
 import kotlin.random.Random
 
 class NotesAdapter (private val context: Context, val listener : NotesClickListener) : RecyclerView.Adapter<NotesAdapter.NoteViewHolder>(){
-
+/* สร้าง Notelist ขึ้นมา เพื่อการแสดงผลผ่านหน้าจอด้วย recycleview  ส่วน fulllist เป็น list ที่เราจะดึงขึ้นมาจาก database ที่มีข้อมูลเก่าบันทึก*/
+    /*ฉะนั้น เราจะมาจัดการกำหนดแค่ในสว่นของ NoteList เพียงอย่างเดียวเท่านั้น*/
     private val NotesList = ArrayList<Note>()
     private val fullList = ArrayList<Note>()
 
@@ -21,6 +22,7 @@ class NotesAdapter (private val context: Context, val listener : NotesClickListe
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         return NoteViewHolder(
             LayoutInflater.from(context).inflate(R.layout.list_item, parent,false)
+        /*ดึง layout listitem ขึ้นมาแสดง*/
         )
     }
 
@@ -52,7 +54,8 @@ class NotesAdapter (private val context: Context, val listener : NotesClickListe
     }
 
     fun updateList(newList : List<Note>){
-
+    /*fulllist คือถังเก็บของ Database ถ้าไม่มีของก็ว่าง ๆ แต่ถ้ามีก็ add เข้า Note ที่เราสร้าง Data Class ขึ้นมา
+    * ส่วน Notelist ที่เราสร้างคือหน้า Note Interface ที่เราเห็น ขึ้นต้องเอาไปบันทึกไว้ใน fullist เป็นฐานข้อมูลไว้*/
         fullList.clear()
         fullList.addAll(newList)
 
@@ -78,6 +81,7 @@ class NotesAdapter (private val context: Context, val listener : NotesClickListe
         notifyDataSetChanged()
     }
 
+    /*สร้างสีพื้นของ note ให้เป็น random ขึ้นมา*/
     fun randomColor() : Int{
         val list = ArrayList<Int>()
         list.add(R.color.NoteColor1)
@@ -92,6 +96,7 @@ class NotesAdapter (private val context: Context, val listener : NotesClickListe
     }
 
     inner class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        /*ดึง xml มาแสดงผล*/
         val notes_layout = itemView.findViewById<CardView>(R.id.card_layout)
         val title = itemView.findViewById<TextView>(R.id.tv_title)
         val note_tv = itemView.findViewById<TextView>(R.id.tv_note)
