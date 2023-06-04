@@ -26,7 +26,7 @@ class NotesAdapter (private val context: Context, val listener : NotesClickListe
         )
     }
 
-    @SuppressLint("NewApi") /**/
+    @SuppressLint("NewApi")
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val currentNote = NotesList[position]
         holder.title.text = currentNote.title
